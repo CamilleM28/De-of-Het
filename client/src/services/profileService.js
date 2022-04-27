@@ -1,12 +1,48 @@
-// You can create all the fetches to your own APIs and externals APIs here
-// This example fetch is specifically for our Profile API and is why the file is called profileService.js
 import axios from "axios";
 
-const getAllProfiles = async () => {
-  const response = await axios.get(`/api/profile`);
+axios.defaults.baseURL = "http://localhost:8080";
+
+const getProfile = async () => {
+  const response = await axios.get(`/api/profile/:id`);
 
   return response.data || [];
 };
 
-// All of the endpoints in this file can be exported below
-export { getAllProfiles };
+const createProfile = async () => {
+  const response = await axios.post(`/api/profile`);
+
+  return response.data || [];
+};
+
+const addFavourtite = async () => {
+  const response = await axios.patch(`/api/profile/addfav/:id`);
+
+  return response.data || [];
+};
+
+const deleteFavourite = async () => {
+  const response = await axios.patch(`/api/profile/deletefav/:id`);
+
+  return response.data || [];
+};
+
+const updateScores = async () => {
+  const response = await axios.patch(`/api/profile/scores/:id`);
+
+  return response.data || [];
+};
+
+const updateFailed = async () => {
+  const response = await axios.patch(`/api/profile/failed/:id`);
+
+  return response.data || [];
+};
+
+export {
+  getProfile,
+  createProfile,
+  addFavourtite,
+  deleteFavourite,
+  updateScores,
+  updateFailed,
+};

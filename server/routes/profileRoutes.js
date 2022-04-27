@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const Profile = mongoose.model("profiles");
 
 const profileRoutes = (app) => {
-  app.get(`/api/profiles`, async (req, res) => {
-    const profiles = await Profile.find();
+  app.get(`/api/profile/:id`, async (req, res) => {
+    const id = req.params.id;
+    const profile = await Profile.findById(id);
 
-    return res.status(200).send(profiles);
+    return res.status(200).send(profile);
   });
 
   app.post(`/api/profile`, async (req, res) => {
@@ -16,13 +17,34 @@ const profileRoutes = (app) => {
     });
   });
 
-  app.patch(`/api/profile/favourites/:id`, async (req, res) => {
+  app.patch(`/api/profile/addfav/:id`, async (req, res) => {
     const id = req.params.id;
-    const favourites = await Profile.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const favs = await Profile.findById(id);
+    const updatedFavs = await Profile.findByIdAndUpdate(
+      id,
+      {
+        favourites: [...favs.favourites, req.body.favouriteId],
+      },
+      { new: true }
+    );
 
-    return res.status(202).send(favourites);
+    return res.status(202).send(updatedFavs);
+  });
+
+  app.patch(`/api/profile/deletefav/:id`, async (req, res) => {
+    const id = req.params.id;
+    const currentFavs = await Profile.findById(id);
+    const updatedFavs = currentFavs.favourites.filter(
+      (fav) => fav !== req.body.deletedId
+    );
+    const deletedFavs = await Profile.findByIdAndUpdate(
+      id,
+      { favourites: updatedFavs },
+      {
+        new: true,
+      }
+    );
+    return res.status(202).send(deletedFavs);
   });
 
   app.patch(`/api/profile/scores/:id`, async (req, res) => {
@@ -36,9 +58,13 @@ const profileRoutes = (app) => {
 
   app.patch(`/api/profile/failed/:id`, async (req, res) => {
     const id = req.params.id;
-    const failed = await Profile.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const failed = await Profile.findByIdAndUpdate(
+      id,
+      { failed: req.body.failedId },
+      {
+        new: true,
+      }
+    );
 
     return res.status(202).send(failed);
   });
