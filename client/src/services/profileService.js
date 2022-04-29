@@ -2,6 +2,12 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8080";
 
+const getProfiles = async () => {
+  const response = await axios.get(`/api/profiles/`);
+
+  return response.data || [];
+};
+
 const getProfile = async () => {
   const response = await axios.get(`/api/profile/:id`);
 
@@ -39,6 +45,7 @@ const updateFailed = async () => {
 };
 
 export {
+  getProfiles,
   getProfile,
   createProfile,
   addFavourtite,
