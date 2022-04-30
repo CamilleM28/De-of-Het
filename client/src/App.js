@@ -3,13 +3,20 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { getNouns } from "./services/nounService";
+import axios from "axios";
 
 import NounList from "./components/NounList";
 import Login from "./components/Login";
-import Home from "./components/Home";
+import Profile from "./components/Profile";
 
 function App() {
   const [nouns, setNouns] = useState(null);
+  const [id, setId] = useState("");
+  const [profile, setProfile] = useState({});
+
+  const profileDetails = (data) => {
+    setId(data);
+  };
 
   useEffect(() => {
     async function getWords() {
@@ -22,6 +29,13 @@ function App() {
     getWords();
   }, [nouns]);
 
+  async function getProfile() {
+    if (profile.username === undefined) {
+      const response = await axios.get(`/api/profile/` + id);
+      setProfile(response.data);
+    }
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -33,7 +47,7 @@ function App() {
                 <>
                   <h1>login</h1>
                 </>
-                <Login />
+                <Login profileDetails={profileDetails} />
               </>
             }
           />
@@ -41,7 +55,7 @@ function App() {
             path="home"
             element={
               <>
-                <Home />
+                <Profile profile={profile} getProfile={getProfile} />
                 <NounList nouns={nouns} />
               </>
             }

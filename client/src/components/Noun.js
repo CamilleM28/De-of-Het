@@ -1,5 +1,4 @@
 function Noun(props) {
-  console.log(props.noun.image);
   return (
     <li key={props.noun._id}>
       <h3>{props.noun.noun} </h3>

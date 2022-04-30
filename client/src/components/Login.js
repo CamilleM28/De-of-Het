@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8080";
 
-const Login = () => {
+const Login = (props) => {
   const [SignUpUsername, setSignUpUsername] = useState();
   const [SignUpPassword, setSignUpPassword] = useState();
   const [ConfirmPassword, setConfirmPassword] = useState();
@@ -17,10 +17,12 @@ const Login = () => {
 
   useEffect(() => {
     async function checkProfiles() {
-      const response = await getProfiles();
-      setProfiles(response);
-    }
+      if (!profiles) {
+        const response = await getProfiles();
 
+        setProfiles(response);
+      }
+    }
     checkProfiles();
   }, [profiles]);
 
@@ -37,7 +39,17 @@ const Login = () => {
         });
       }
       createProfile();
-      navigate("home");
+      async function checkProfiles() {
+        const response = await getProfiles();
+
+        setProfiles(response);
+      }
+      checkProfiles();
+      setProfiles(checkProfiles);
+
+      alert(
+        `Profile created. Please Sign in. Your username is ${SignUpUsername}`
+      );
     }
     if (match !== undefined && SignUpPassword === ConfirmPassword) {
       alert("Username already taken");
@@ -58,13 +70,15 @@ const Login = () => {
     );
 
     if (match !== undefined) {
-      console.log(match, match._id, LoginUsername, LoginPassword);
       // const response = await axios.get(`/api/profile/` + id);
       // async function getProfile() {
       //   const response = await axios.get(`/api/profile/` + match._id);
       //   console.log(response.data);
       // }
       // getProfile();
+      const id = match._id;
+      props.profileDetails(id);
+
       navigate("home");
     }
     if (match === undefined) {
