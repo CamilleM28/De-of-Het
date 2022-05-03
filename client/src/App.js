@@ -5,9 +5,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getNouns } from "./services/nounService";
 import axios from "axios";
 
-import NounList from "./components/NounList";
+import FoodList from "./components/FoodList";
+import TravelList from "./components/TravelList";
+import AnimalList from "./components/AnimalList";
+import PeopleList from "./components/PeopleList";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import Header from "./components/Header";
+import Favourites from "./components/Favourites";
 
 function App() {
   const [nouns, setNouns] = useState(null);
@@ -31,7 +36,7 @@ function App() {
 
   async function getProfile() {
     if (profile.username === undefined) {
-      const response = await axios.get(`/api/profile/` + id);
+      const response = await axios.get(`/api/profile/${id}`);
       setProfile(response.data);
     }
   }
@@ -44,9 +49,7 @@ function App() {
             path="/"
             element={
               <>
-                <>
-                  <h1>login</h1>
-                </>
+                <h1>login</h1>
                 <Login profileDetails={profileDetails} />
               </>
             }
@@ -55,8 +58,21 @@ function App() {
             path="home"
             element={
               <>
+                <Header />
                 <Profile profile={profile} getProfile={getProfile} />
-                <NounList nouns={nouns} />
+                <FoodList nouns={nouns} id={id} setProfile={setProfile} />
+                <TravelList nouns={nouns} id={id} setProfile={setProfile} />
+                <AnimalList nouns={nouns} id={id} setProfile={setProfile} />
+                <PeopleList nouns={nouns} id={id} setProfile={setProfile} />
+              </>
+            }
+          />
+          <Route
+            path="/favourites"
+            element={
+              <>
+                <Header />
+                <Favourites nouns={nouns} profile={profile} id={id} />
               </>
             }
           />
