@@ -18,6 +18,8 @@ function App() {
   const [nouns, setNouns] = useState(null);
   const [id, setId] = useState("");
   const [profile, setProfile] = useState({});
+  const [favourites, setFavourites] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const profileDetails = (data) => {
     setId(data);
@@ -41,6 +43,16 @@ function App() {
     }
   }
 
+  function updateFavs() {
+    async function getFavs() {
+      setLoading(true);
+      const response = await axios.get(`/api/profile/${id}`);
+      setFavourites(response.data.favourites);
+      setLoading(false);
+    }
+    getFavs();
+  }
+
   return (
     <div>
       <BrowserRouter>
@@ -58,7 +70,7 @@ function App() {
             path="home"
             element={
               <>
-                <Header />
+                <Header updateFavs={updateFavs} />
                 <Profile profile={profile} getProfile={getProfile} />
                 <FoodList nouns={nouns} id={id} setProfile={setProfile} />
                 <TravelList nouns={nouns} id={id} setProfile={setProfile} />
@@ -72,7 +84,14 @@ function App() {
             element={
               <>
                 <Header />
-                <Favourites nouns={nouns} profile={profile} id={id} />
+                {loading ? <h2>Loading current favourites...</h2> : null}
+                <Favourites
+                  nouns={nouns}
+                  profile={profile}
+                  id={id}
+                  favourites={favourites}
+                  updateFavs={updateFavs}
+                />
               </>
             }
           />

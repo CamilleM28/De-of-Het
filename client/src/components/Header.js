@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <div>
       <Link to="/home">Home</Link>
@@ -9,7 +9,9 @@ export default function Header() {
         About
       </Link> */}
 
-      <Link to="/favourites">Favourites</Link>
+      <Link to="/favourites" onClick={props.updateFavs}>
+        Favourites
+      </Link>
     </div>
   );
 }
