@@ -4,7 +4,6 @@ const Profile = (props) => {
   return (
     <div>
       <p>Hello {props.profile.username} !</p>
-      <p>{props.profile.favourites}</p>
       <p>
         Food and Drink{" "}
         {props.profile.scores ? props.profile.scores.food : "No score "} / 26

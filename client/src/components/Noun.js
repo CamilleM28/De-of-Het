@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Noun(props) {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswer, setWrongAnswer] = useState("");
-  const [deDisable, setDeDisable] = useState(false);
-  const [hetDisable, setHetDisable] = useState(false);
+  const [Disable, setDisable] = useState(false);
+  // const [hetDisable, setHetDisable] = useState(false);
   const [buttonText, setButtonText] = useState("Favourite");
+  const [showScore, setShowScore] = useState(false);
 
   const id = props.id;
   const nounId = props.noun._id;
+  const score = props.score;
+  const setScore = props.setScore;
 
   useEffect(() => {
     async function getFavs() {
@@ -29,20 +33,22 @@ function Noun(props) {
   function het() {
     if (props.noun.article === "Het") {
       setCorrectAnswer("Correct");
-      setDeDisable(true);
+      setDisable(true);
+      setScore(score + 1);
     } else {
       setWrongAnswer("Wrong");
-      setDeDisable(true);
+      setDisable(true);
     }
   }
 
   function de() {
     if (props.noun.article === "De") {
       setCorrectAnswer("Correct");
-      setHetDisable(true);
+      setDisable(true);
+      setScore(score + 1);
     } else {
       setWrongAnswer("Wrong");
-      setHetDisable(true);
+      setDisable(true);
     }
   }
 
@@ -59,25 +65,77 @@ function Noun(props) {
     }
   }
 
+  function next() {
+    if (props.currentWord < 25) {
+      props.setQuestionTracker([...props.questionTracker, props.currentWord]);
+      props.setCurrentWord(props.currentWord + 1);
+    }
+    if (props.currentWord === 25) {
+      setShowScore(true);
+    }
+  }
+
+  async function submitScore() {
+    if (props.category === "Food & Drink") {
+      const response = await axios.patch(`/api/profile/scores/${id}`, {
+        "scores.food": score,
+      });
+      props.setProfile(response);
+    }
+    if (props.category === "Travel & Transport") {
+      const response = await axios.patch(`/api/profile/scores/${id}`, {
+        "scores.travel": score,
+      });
+      props.setProfile(response);
+    }
+    if (props.category === "Animals & Insects") {
+      const response = await axios.patch(`/api/profile/scores/${id}`, {
+        "scores.animals": score,
+      });
+      props.setProfile(response);
+    }
+    if (props.category === "People & Family") {
+      const response = await axios.patch(`/api/profile/scores/${id}`, {
+        "scores.people": score,
+      });
+      props.setProfile(response);
+    }
+  }
+
   return (
-    <li key={props.noun._id}>
-      <h3>{props.noun.noun} </h3>
-      <img
-        src={require(`.${props.noun.image}`)}
-        alt=""
-        width="250"
-        height="250"
-      />
-      <button disabled={deDisable} onClick={de}>
-        De
-      </button>
-      <button disabled={hetDisable} onClick={het}>
-        Het
-      </button>
-      <h3>{correctAnswer}</h3>
-      <h3>{wrongAnswer}</h3>
-      <button onClick={Favourites}>{buttonText}</button>
-    </li>
+    <div>
+      {showScore ? (
+        <div>
+          <h2>Score</h2>
+          <h4>{score}/26</h4>
+          <Link to="/home">
+            <button onClick={submitScore}>Submit</button>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <li key={props.noun._id}>
+            <h3>{props.noun.noun} </h3>
+            <img
+              src={require(`.${props.noun.image}`)}
+              alt=""
+              width="250"
+              height="250"
+            />
+            <button disabled={Disable} onClick={de}>
+              De
+            </button>
+            <button disabled={Disable} onClick={het}>
+              Het
+            </button>
+            <h3>{correctAnswer}</h3>
+            <h3>{wrongAnswer}</h3>
+            <button onClick={Favourites}>{buttonText}</button>
+            <button onClick={next}>Next</button>
+          </li>
+        </div>
+      )}
+    </div>
   );
 }
 
