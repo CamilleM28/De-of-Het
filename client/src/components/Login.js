@@ -95,6 +95,7 @@ const Login = (props) => {
           placeholder="Username"
           onChange={(e) => setSignUpUsername(e.target.value)}
         />
+        <input type="text" placeholder="email" />
         <input
           type="password"
           required

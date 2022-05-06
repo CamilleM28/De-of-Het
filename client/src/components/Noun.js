@@ -6,7 +6,6 @@ function Noun(props) {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [wrongAnswer, setWrongAnswer] = useState("");
   const [Disable, setDisable] = useState(false);
-  // const [hetDisable, setHetDisable] = useState(false);
   const [buttonText, setButtonText] = useState("Favourite");
   const [showScore, setShowScore] = useState(false);
 
@@ -67,7 +66,6 @@ function Noun(props) {
 
   function next() {
     if (props.currentWord < 25) {
-      props.setQuestionTracker([...props.questionTracker, props.currentWord]);
       props.setCurrentWord(props.currentWord + 1);
     }
     if (props.currentWord === 25) {
@@ -115,6 +113,7 @@ function Noun(props) {
       ) : (
         <div>
           <li key={props.noun._id}>
+            <h5>Question {props.currentWord + 1}/26</h5>
             <h3>{props.noun.noun} </h3>
             <img
               src={require(`.${props.noun.image}`)}

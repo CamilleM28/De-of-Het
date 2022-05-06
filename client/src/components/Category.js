@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import FoodList from "./FoodList";
 import TravelList from "./TravelList";
@@ -8,6 +7,17 @@ import PeopleList from "./PeopleList";
 export default function Category(props) {
   const foodList = props.nouns.filter(
     (noun) => noun.category === "Food & Drink"
+  );
+  const travelList = props.nouns.filter(
+    (noun) => noun.category === "Travel & Transport"
+  );
+
+  const animalList = props.nouns.filter(
+    (noun) => noun.category === "Animals & Insects"
+  );
+
+  const peopleList = props.nouns.filter(
+    (noun) => noun.category === "People & Family"
   );
 
   function food() {
@@ -25,7 +35,7 @@ export default function Category(props) {
   function travel() {
     props.setCategory(
       <TravelList
-        nouns={props.nouns}
+        nouns={travelList}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
@@ -35,7 +45,7 @@ export default function Category(props) {
   function animals() {
     props.setCategory(
       <AnimalList
-        nouns={props.nouns}
+        nouns={animalList}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
@@ -45,7 +55,7 @@ export default function Category(props) {
   function people() {
     props.setCategory(
       <PeopleList
-        nouns={props.nouns}
+        nouns={peopleList}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}

@@ -18,9 +18,6 @@ function App() {
   const [favourites, setFavourites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState();
-  const [questionTracker, setQuestionTracker] = useState([6, 7, 8]);
-
-  console.log(questionTracker);
 
   const profileDetails = (data) => {
     setId(data);
@@ -79,10 +76,7 @@ function App() {
                   id={id}
                   setProfile={setProfile}
                   getProfile={getProfile}
-                  questionTracker={questionTracker}
-                  setQuestionTracker={setQuestionTracker}
                 />
-                {/* <h2>{category}</h2> */}
               </>
             }
           />
