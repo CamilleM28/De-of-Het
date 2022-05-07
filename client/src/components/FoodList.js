@@ -6,7 +6,7 @@ const FoodList = (props) => {
   const [score, setScore] = useState(0);
   const [category] = useState("Food & Drink");
 
-  const filteredArray = props.nouns.map((noun) => (
+  const foodArray = props.nouns.map((noun) => (
     <Noun
       key={noun._id}
       noun={noun}
@@ -17,11 +17,12 @@ const FoodList = (props) => {
       score={score}
       setScore={setScore}
       category={category}
+      nouns={props.nouns}
     />
   ));
 
   return props.nouns && props.nouns.length > 0 ? (
-    filteredArray[currentWord]
+    foodArray[currentWord]
   ) : (
     <p>No food found</p>
   );

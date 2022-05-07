@@ -6,7 +6,7 @@ const TravelList = (props) => {
   const [score, setScore] = useState(0);
   const [category] = useState("Travel & Transport");
 
-  const filteredArray = props.nouns.map((noun) => (
+  const travelArray = props.nouns.map((noun) => (
     <Noun
       key={noun._id}
       noun={noun}
@@ -17,10 +17,11 @@ const TravelList = (props) => {
       score={score}
       setScore={setScore}
       category={category}
+      nouns={props.nouns}
     />
   ));
   return props.nouns && props.nouns.length > 0 ? (
-    filteredArray[currentWord]
+    travelArray[currentWord]
   ) : (
     <p>No travel found</p>
   );

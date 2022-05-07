@@ -6,7 +6,7 @@ const AnimalList = (props) => {
   const [score, setScore] = useState(0);
   const [category] = useState("Animals & Insects");
 
-  const filteredArray = props.nouns.map((noun) => (
+  const animalArray = props.nouns.map((noun) => (
     <Noun
       key={noun._id}
       noun={noun}
@@ -17,10 +17,11 @@ const AnimalList = (props) => {
       score={score}
       setScore={setScore}
       category={category}
+      nouns={props.nouns}
     />
   ));
   return props.nouns && props.nouns.length > 0 ? (
-    filteredArray[currentWord]
+    animalArray[currentWord]
   ) : (
     <p>No animals found</p>
   );

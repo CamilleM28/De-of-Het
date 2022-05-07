@@ -69,13 +69,21 @@ function App() {
             element={
               <>
                 <Header updateFavs={updateFavs} setCategory={setCategory} />
-                <Profile profile={profile} getProfile={getProfile} />
+                <Profile
+                  profile={profile}
+                  getProfile={getProfile}
+                  nouns={nouns}
+                />
                 <Category
                   setCategory={setCategory}
                   nouns={nouns}
                   id={id}
                   setProfile={setProfile}
                   getProfile={getProfile}
+                  // foodNouns={foodNouns}
+                  // travelNouns={travelNouns}
+                  // animalNouns={animalNouns}
+                  // peopleNouns={peopleNouns}
                 />
               </>
             }

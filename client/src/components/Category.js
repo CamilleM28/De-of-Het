@@ -5,25 +5,32 @@ import AnimalList from "./AnimalList";
 import PeopleList from "./PeopleList";
 
 export default function Category(props) {
-  const foodList = props.nouns.filter(
+  const foodNouns = props.nouns.filter(
     (noun) => noun.category === "Food & Drink"
   );
-  const travelList = props.nouns.filter(
+  const travelNouns = props.nouns.filter(
     (noun) => noun.category === "Travel & Transport"
   );
 
-  const animalList = props.nouns.filter(
+  const animalNouns = props.nouns.filter(
     (noun) => noun.category === "Animals & Insects"
   );
 
-  const peopleList = props.nouns.filter(
+  const peopleNouns = props.nouns.filter(
     (noun) => noun.category === "People & Family"
   );
+
+  const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
+
+  const foodShuffle = shuffle(foodNouns);
+  const travelShuffle = shuffle(travelNouns);
+  const animalShuffle = shuffle(animalNouns);
+  const peopleShuffle = shuffle(peopleNouns);
 
   function food() {
     props.setCategory(
       <FoodList
-        nouns={foodList}
+        nouns={foodShuffle}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
@@ -35,7 +42,7 @@ export default function Category(props) {
   function travel() {
     props.setCategory(
       <TravelList
-        nouns={travelList}
+        nouns={travelShuffle}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
@@ -45,7 +52,7 @@ export default function Category(props) {
   function animals() {
     props.setCategory(
       <AnimalList
-        nouns={animalList}
+        nouns={animalShuffle}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
@@ -55,13 +62,14 @@ export default function Category(props) {
   function people() {
     props.setCategory(
       <PeopleList
-        nouns={peopleList}
+        nouns={peopleShuffle}
         id={props.id}
         setProfile={props.setProfile}
         getProfile={props.getProfile}
       />
     );
   }
+
   return (
     <div>
       <Link to="/category">

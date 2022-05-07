@@ -113,7 +113,9 @@ function Noun(props) {
       ) : (
         <div>
           <li key={props.noun._id}>
-            <h5>Question {props.currentWord + 1}/26</h5>
+            <h5>
+              Question {props.currentWord + 1}/{props.nouns.length}
+            </h5>
             <h3>{props.noun.noun} </h3>
             <img
               src={require(`.${props.noun.image}`)}
