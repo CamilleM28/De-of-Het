@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&family=Concert+One&display=swap");
+
+.question {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.listItem {
+  list-style-type: none;
+  grid-column-start: 2;
+  place-self: center;
+  background-color: rgba(156, 212, 193, 0.551);
+  /* background-color: #fff7df; */
+  padding: 0 100px;
+  border-radius: 100px;
+  border: solid #ecc046;
+  text-align: center;
+  margin: 20px 0 80px 0;
+}
+
+.cardTop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.count {
+  font-family: "Concert One", cursive;
+  text-align: end;
+  padding: 0 10px;
+  color: #ca634c;
+}
+
+.favourite {
+  font-family: "Concert One", cursive;
+  margin: 15px;
+  height: 0 40px 7px;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  color: rgb(6, 51, 34);
+  background-color: #ecc046;
+  border: 0px;
+}
+
+.noun {
+  margin: 30px;
+  font-family: "Concert One", cursive;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: rgb(6, 51, 34);
+}
+
+.button {
+  margin: 15px;
+  height: 80px;
+  padding: 0 50px 7px;
+
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: rgb(160, 51, 95);
+  background-color: rgb(255, 189, 122);
+  border: 0px;
+}
+
+.correctAnswer {
+  margin: 15px;
+  height: 80px;
+  padding: 0 50px 7px;
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: rgb(6, 51, 34);
+  background-color: rgb(60, 206, 60);
+  border: 0px;
+}
+
+.wrongAnswer {
+  margin: 15px;
+  height: 80px;
+  padding: 0 50px 7px;
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: rgb(6, 51, 34);
+  background-color: rgb(255, 0, 0);
+  border: 0px;
+}
+
+.next {
+  margin: 15px 80px;
+  height: 60px;
+  padding: 0 50px 7px;
+  /* justify-self: center; */
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: white;
+  background-color: #3eadcf;
+  border: 0px;
+}
+
+.scoreContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.scores {
+  grid-column-start: 2;
+  text-align: center;
+  font-family: "Concert One", cursive;
+  border-radius: 50px;
+  border: solid #ecc046;
+  background-color: #fff7df;
+  padding: 70px;
+  margin: 100px 100px 340px 100px;
+}
+.save {
+  margin: 15px 80px;
+  height: 60px;
+  padding: 0 50px 7px;
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: #f5f7ed;
+  background-color: #3eadcf;
+  border: 0px;
+}
+
+.title {
+  display: inline-block;
+  color: rgb(225, 165, 106);
+}
+
+.numbers {
+  display: inline-block;
+  color: rgb(160, 51, 95);
+  font-size: 50px;
+}

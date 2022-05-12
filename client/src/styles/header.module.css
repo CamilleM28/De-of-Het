@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&family=Concert+One&display=swap");
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.twoButtonHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.button {
+  margin: 15px;
+  height: 60px;
+  padding: 0 50px;
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: 25px;
+  color: rgb(6, 51, 34);
+  background-color: #abe9cd;
+  border: 0px;
+}
+
+.buttonLink {
+  grid-column-start: 2;
+  place-self: center;
+}
+
+.homeLink {
+  justify-self: right;
+  grid-column-start: 2;
+}
+
+.favLink {
+  justify-self: left;
+  grid-column-start: 3;
+}
+
+.doh {
+  transform: rotate(-15deg);
+}

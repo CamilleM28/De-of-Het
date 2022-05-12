@@ -1,15 +1,18 @@
-import "./styles/App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import styles from "./styles/app.module.css";
 
 import { getNouns } from "./services/nounService";
 import axios from "axios";
 
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import Header from "./components/Header";
+import HomeHeader from "./components/HomeHeader";
+import FavHeader from "./components/FavHeader";
 import Favourites from "./components/Favourites";
 import Category from "./components/Category";
+import Footer from "./components/Footer";
+import GameHeader from "./components/GameHeader";
 
 function App() {
   const [nouns, setNouns] = useState(null);
@@ -52,14 +55,13 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.background}>
       <BrowserRouter>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <h1>login</h1>
                 <Login profileDetails={profileDetails} />
               </>
             }
@@ -68,13 +70,14 @@ function App() {
             path="home"
             element={
               <>
-                <Header updateFavs={updateFavs} setCategory={setCategory} />
+                <HomeHeader updateFavs={updateFavs} setCategory={setCategory} />
                 <Profile
                   profile={profile}
                   getProfile={getProfile}
                   nouns={nouns}
                 />
                 <Category
+                  profile={profile}
                   setCategory={setCategory}
                   nouns={nouns}
                   id={id}
@@ -85,6 +88,7 @@ function App() {
                   // animalNouns={animalNouns}
                   // peopleNouns={peopleNouns}
                 />
+                <Footer />
               </>
             }
           />
@@ -92,9 +96,8 @@ function App() {
             path="/category"
             element={
               <>
-                <Link to="/home">
-                  <button> Home</button>
-                </Link>
+                <GameHeader updateFavs={updateFavs} />
+
                 <h2>{category}</h2>
               </>
             }
@@ -103,8 +106,12 @@ function App() {
             path="/favourites"
             element={
               <>
-                <Header setCategory={setCategory} />
-                {loading ? <h2>Loading current favourites...</h2> : null}
+                <FavHeader setCategory={setCategory} />
+                {loading ? (
+                  <h2 className={styles.loading}>
+                    Loading current favourites...
+                  </h2>
+                ) : null}
                 <Favourites
                   nouns={nouns}
                   profile={profile}

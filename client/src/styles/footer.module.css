@@ -1,0 +1,22 @@
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.button {
+  margin: 100px 60px 60px 0;
+  height: 60px;
+  padding: 0 50px;
+  border-radius: 10px;
+  font-family: "Concert One", cursive;
+  font-size: larger;
+  color: rgb(6, 51, 34);
+  background-color: #3eadcf;
+  border: 0px;
+  place-self: center;
+}
+
+.buttonLink {
+  place-self: end;
+}

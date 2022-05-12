@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&family=Concert+One&display=swap");
+
+.noun {
+  display: inline-block;
+  text-align: center;
+  border: solid #abe9cd;
+  padding: 0 40px;
+  border-radius: 20px;
+  margin: 65px;
+  background-color: rgba(156, 212, 193, 0.551);
+  font-family: "Concert One", cursive;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(6, 51, 34);
+}
+
+.button {
+  font-family: "Concert One", cursive;
+  margin: 15px;
+  height: 0 40px 7px;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #f5f7ed;
+  background-color: #ecc046;
+  border: 0px;
+  font-size: 25px;
+}
+
+.none {
+  font-family: "Concert One", cursive;
+  font-size: 30px;
+}

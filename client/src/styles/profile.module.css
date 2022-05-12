@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&family=Concert+One&display=swap");
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.username {
+  place-self: center;
+  font-family: "Concert One", cursive;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(160, 51, 95);
+
+  margin: 30px;
+}
+
+/* .food {
+  grid-column-start: 1;
+  place-self: center;
+  font-family: "Concert One", cursive;
+  text-align: center;
+  color: white;
+  font-size: larger;
+  border: solid;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.score {
+  place-self: center;
+  font-family: "Concert One", cursive;
+  text-align: center;
+  color: white;
+  font-size: large;
+  border: solid;
+  padding: 30px;
+  border-radius: 10px;
+} */

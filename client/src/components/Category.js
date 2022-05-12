@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import styles from "../styles/category.module.css";
+
 import FoodList from "./FoodList";
 import TravelList from "./TravelList";
 import AnimalList from "./AnimalList";
@@ -71,19 +73,80 @@ export default function Category(props) {
   }
 
   return (
-    <div>
-      <Link to="/category">
-        <button onClick={food}>Food & Drink</button>
-      </Link>
-      <Link to="/category">
-        <button onClick={travel}>Travel & Transport</button>
-      </Link>
-      <Link to="/category">
-        <button onClick={animals}>Animals & Insects </button>
-      </Link>
-      <Link to="/category">
-        <button onClick={people}>People & Family</button>
-      </Link>
+    <div className={styles.container}>
+      <div className={styles.category}>
+        <p className={styles.heading}>Food & Drink</p>
+        <Link to="/category">
+          <button className={styles.button} onClick={food}>
+            {" "}
+            <img
+              src={require("./images/(1)egg.png")}
+              alt=""
+              width="250"
+              height="250"
+            />
+          </button>
+        </Link>
+        <p className={styles.previousScore}> Previous score: </p>
+        <p className={styles.score}>
+          {props.profile.scores ? props.profile.scores.food : "No score "} /{" "}
+          {foodNouns.length}
+        </p>
+      </div>
+      <div className={styles.category}>
+        <p className={styles.heading}> Travel & Transport</p>
+        <Link to="/category">
+          <button className={styles.button} onClick={travel}>
+            <img
+              src={require("./images/(27)airplane.png")}
+              alt=""
+              width="250"
+              height="250"
+            />
+          </button>
+        </Link>
+        <p className={styles.previousScore}> Previous score: </p>
+        <p className={styles.score}>
+          {props.profile.scores ? props.profile.scores.travel : "No score "} /{" "}
+          {travelNouns.length}
+        </p>
+      </div>
+      <div className={styles.category}>
+        <p className={styles.heading}> Animals & Insects</p>
+        <Link to="/category">
+          <button className={styles.button} onClick={animals}>
+            <img
+              src={require("./images/(53)animal.png")}
+              alt=""
+              width="250"
+              height="250"
+            />
+          </button>
+        </Link>
+        <p className={styles.previousScore}> Previous score: </p>
+        <p className={styles.score}>
+          {props.profile.scores ? props.profile.scores.animals : "No score "} /{" "}
+          {animalNouns.length}
+        </p>
+      </div>
+      <div className={styles.category}>
+        <p className={styles.heading}>People & Family</p>
+        <Link to="/category">
+          <button className={styles.button} onClick={people}>
+            <img
+              src={require("./images/(79)family.png")}
+              alt=""
+              width="250"
+              height="250"
+            />
+          </button>
+        </Link>
+        <p className={styles.previousScore}> Previous score: </p>
+        <p className={styles.score}>
+          {props.profile.scores ? props.profile.scores.people : "No score "} /{" "}
+          {peopleNouns.length}
+        </p>
+      </div>
     </div>
   );
 }

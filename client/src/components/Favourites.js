@@ -1,4 +1,5 @@
 import FavouriteList from "./FavouriteList";
+import styles from "../styles/favourite.module.css";
 
 export default function Favourites(props) {
   return props.favourites.length > 0 ? (
@@ -11,6 +12,6 @@ export default function Favourites(props) {
       />
     ))
   ) : (
-    <p>No favourites </p>
+    <p className={styles.none}>No favourites </p>
   );
 }

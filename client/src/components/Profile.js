@@ -1,3 +1,5 @@
+import styles from "../styles/profile.module.css";
+
 const Profile = (props) => {
   props.getProfile();
 
@@ -17,29 +19,31 @@ const Profile = (props) => {
   );
 
   return (
-    <div>
-      <p>Hello {props.profile.username} !</p>
-      <p>
-        Food and Drink{" "}
+    <div className={styles.container}>
+      <p className={styles.username}>Hello {props.profile.username} !</p>
+      {/* <p className={styles.food}>
+        Food and Drink <br />
         {props.profile.scores ? props.profile.scores.food : "No score "} /{" "}
         {foodNouns.length}
       </p>
-      <p>
-        Travel and Transport{" "}
-        {props.profile.scores ? props.profile.scores.travel : "No score "} /{" "}
-        {travelNouns.length}
+      <p className={styles.score}>
+        Travel and Transport <br />
+        {props.profile.scores
+          ? props.profile.scores.travel
+          : "No score "} / {travelNouns.length}
       </p>
-      <p>
-        Animals and Insects{" "}
-        {props.profile.scores ? props.profile.scores.animals : "No score "} /{" "}
-        {animalNouns.length}
+      <p className={styles.score}>
+        Animals and Insects <br />
+        {props.profile.scores
+          ? props.profile.scores.animals
+          : "No score "} / {animalNouns.length}
       </p>
-      <p>
-        People and Family{" "}
-        {props.profile.scores ? props.profile.scores.people : "No score "} /{" "}
-        {peopleNouns.length}
-      </p>
-      <p>{props.profile.failed}</p>
+      <p className={styles.score}>
+        People and Family <br />
+        {props.profile.scores
+          ? props.profile.scores.people
+          : "No score "} / {peopleNouns.length}
+      </p> */}
     </div>
   );
 };

@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&family=Concert+One&display=swap");
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.category {
+  place-self: center;
+  border: solid #abe9cd;
+  padding: 0 40px;
+  border-radius: 20px;
+  margin: 50px;
+}
+
+.heading {
+  text-align: center;
+  font-family: "Concert One", cursive;
+  font-size: x-large;
+  color: #215b64;
+  margin: 40px;
+}
+
+.previousScore {
+  text-align: center;
+  font-family: "Concert One", cursive;
+  color: rgb(42, 144, 146);
+}
+
+.score {
+  text-align: center;
+  font-family: "Concert One", cursive;
+  color: #f5f7ed;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.button {
+  border: none;
+  border-radius: 20px;
+  border: solid #abe9cd;
+  background-color: #ffefc460;
+}

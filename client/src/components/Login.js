@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProfiles } from "../services/profileService";
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/login.module.css";
 
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8080";
@@ -70,12 +71,6 @@ const Login = (props) => {
     );
 
     if (match !== undefined) {
-      // const response = await axios.get(`/api/profile/` + id);
-      // async function getProfile() {
-      //   const response = await axios.get(`/api/profile/` + match._id);
-      //   console.log(response.data);
-      // }
-      // getProfile();
       const id = match._id;
       props.profileDetails(id);
 
@@ -87,46 +82,72 @@ const Login = (props) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSignUp}>
-        <input
-          type="text"
-          required
-          placeholder="Username"
-          onChange={(e) => setSignUpUsername(e.target.value)}
-        />
-        <input type="text" placeholder="email" />
-        <input
-          type="password"
-          required
-          placeholder="Password"
-          onChange={(e) => setSignUpPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          required
-          placeholder="Confirm Password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+    <div>
+      <div className={styles.navBar}>
+        <button className={styles.aboutButton}>About</button>
+        <button className={styles.contactButton}>Contact</button>
+      </div>
+      <div className={styles.container}>
+        <form onSubmit={handleSignUp} className={styles.signUp}>
+          <h2 className={styles.heading}>Sign Up</h2>
+          <input
+            className={styles.inputBox}
+            type="text"
+            required
+            placeholder="Username"
+            onChange={(e) => setSignUpUsername(e.target.value)}
+          />
+          <br />
+          <input className={styles.inputBox} type="text" placeholder="email" />
+          <br />
+          <input
+            className={styles.inputBox}
+            type="password"
+            required
+            placeholder="Password"
+            onChange={(e) => setSignUpPassword(e.target.value)}
+          />
+          <br />
+          <input
+            className={styles.inputBox}
+            type="password"
+            required
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <br />
 
-        <input type="submit" value="Sign up" />
-      </form>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          required
-          placeholder="Username"
-          onChange={(e) => setLoginUsername(e.target.value)}
+          <input className={styles.formButton} type="submit" value="Sign up" />
+        </form>
+        <img
+          className={styles.title}
+          src="/DOH!-Logo.png"
+          alt="DOH! logo"
+          width="400"
+          height="400"
         />
-        <input
-          type="password"
-          required
-          placeholder="Password"
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <button>Login</button>
-      </form>
-    </>
+        <form onSubmit={handleLogin} className={styles.login}>
+          <h2 className={styles.heading}>Login</h2>
+          <input
+            className={styles.inputBox}
+            type="text"
+            required
+            placeholder="Username"
+            onChange={(e) => setLoginUsername(e.target.value)}
+          />
+          <br />
+          <input
+            className={styles.inputBox}
+            type="password"
+            required
+            placeholder="Password"
+            onChange={(e) => setLoginPassword(e.target.value)}
+          />
+          <br />
+          <button className={styles.formButton}>Login</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

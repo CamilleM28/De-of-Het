@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import styles from "../styles/noun.module.css";
 
 function Noun(props) {
-  const [correctAnswer, setCorrectAnswer] = useState("");
-  const [wrongAnswer, setWrongAnswer] = useState("");
   const [Disable, setDisable] = useState(false);
-  const [buttonText, setButtonText] = useState("Favourite");
+  const [buttonText, setButtonText] = useState("+ Favourite");
   const [showScore, setShowScore] = useState(false);
+  const [DeButtonColor, setDeButtonColor] = useState(styles.button);
+  const [HetButtonColor, setHetButtonColor] = useState(styles.button);
 
   const id = props.id;
   const nounId = props.noun._id;
@@ -22,7 +23,7 @@ function Noun(props) {
           (favourite) => favourite === nounId
         );
         if (currentFav) {
-          setButtonText("Remove from favourites");
+          setButtonText("- Favourite");
         }
       }
     }
@@ -31,33 +32,33 @@ function Noun(props) {
 
   function het() {
     if (props.noun.article === "Het") {
-      setCorrectAnswer("Correct");
       setDisable(true);
       setScore(score + 1);
+      setHetButtonColor(styles.correctAnswer);
     } else {
-      setWrongAnswer("Wrong");
       setDisable(true);
+      setHetButtonColor(styles.wrongAnswer);
     }
   }
 
   function de() {
     if (props.noun.article === "De") {
-      setCorrectAnswer("Correct");
       setDisable(true);
       setScore(score + 1);
+      setDeButtonColor(styles.correctAnswer);
     } else {
-      setWrongAnswer("Wrong");
       setDisable(true);
+      setDeButtonColor(styles.wrongAnswer);
     }
   }
 
   function Favourites() {
-    if (buttonText === "Favourite") {
-      setButtonText("Remove from favourites");
+    if (buttonText === "+ Favourite") {
+      setButtonText("- Favourite");
       axios.patch(`/api/profile/addfav/${id}`, { favouriteId: nounId });
     }
-    if (buttonText === "Remove from favourites") {
-      setButtonText("Favourite");
+    if (buttonText === "- Favourite") {
+      setButtonText("+ Favourite");
       axios.patch(`/api/profile/deletefav/${id}`, {
         deletedId: nounId,
       });
@@ -103,36 +104,47 @@ function Noun(props) {
   return (
     <div>
       {showScore ? (
-        <div>
-          <h2>Score</h2>
-          <h4>{score}/26</h4>
-          <Link to="/home">
-            <button onClick={submitScore}>Submit</button>
-          </Link>
+        <div className={styles.scoreContainer}>
+          <div className={styles.scores}>
+            <h2 className={styles.title}>Score:</h2>{" "}
+            <h4 className={styles.numbers}>{score}/26</h4>
+            <Link to="/home">
+              <button onClick={submitScore} className={styles.save}>
+                Save Score
+              </button>
+            </Link>
+          </div>
         </div>
       ) : (
-        <div>
-          <li key={props.noun._id}>
-            <h5>
-              Question {props.currentWord + 1}/{props.nouns.length}
-            </h5>
-            <h3>{props.noun.noun} </h3>
+        <div className={styles.question}>
+          <li key={props.noun._id} className={styles.listItem}>
+            <div className={styles.cardTop}>
+              <button onClick={Favourites} className={styles.favourite}>
+                {buttonText}
+              </button>
+              <h5 className={styles.count}>
+                Question {props.currentWord + 1}/{props.nouns.length}
+              </h5>
+            </div>
+            <h3 className={styles.noun}>{props.noun.noun} </h3>
+            <br />
             <img
               src={require(`.${props.noun.image}`)}
               alt=""
-              width="250"
-              height="250"
+              width="300"
+              height="300"
             />
-            <button disabled={Disable} onClick={de}>
+            <br />
+            <button disabled={Disable} onClick={de} className={DeButtonColor}>
               De
             </button>
-            <button disabled={Disable} onClick={het}>
+            <button disabled={Disable} onClick={het} className={HetButtonColor}>
               Het
             </button>
-            <h3>{correctAnswer}</h3>
-            <h3>{wrongAnswer}</h3>
-            <button onClick={Favourites}>{buttonText}</button>
-            <button onClick={next}>Next</button>
+            <br />
+            <button onClick={next} className={styles.next}>
+              Next
+            </button>
           </li>
         </div>
       )}
