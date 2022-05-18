@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styles from "./styles/app.module.css";
 
 import { getNouns } from "./services/nounService";
@@ -83,12 +83,8 @@ function App() {
                   id={id}
                   setProfile={setProfile}
                   getProfile={getProfile}
-                  // foodNouns={foodNouns}
-                  // travelNouns={travelNouns}
-                  // animalNouns={animalNouns}
-                  // peopleNouns={peopleNouns}
                 />
-                <Footer />
+                <Footer setProfile={setProfile} />
               </>
             }
           />
@@ -98,7 +94,7 @@ function App() {
               <>
                 <GameHeader updateFavs={updateFavs} />
 
-                <h2>{category}</h2>
+                <>{category}</>
               </>
             }
           />

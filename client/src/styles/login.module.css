@@ -4,14 +4,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  /* height: 15vh; */
 }
 
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 100%;
-  /* height: 75vh; */
+  grid-template-rows: 1fr;
 }
 .title {
   place-self: center;
@@ -24,7 +22,6 @@
   font-size: 35px;
   color: #f5f7ed;
   text-align: center;
-
   font-weight: 400;
 }
 
